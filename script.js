@@ -1,18 +1,16 @@
+//canvas
 const canvas = document.getElementById('canvas1');
 const ctx = canvas.getContext('2d');
-canvas.width = 500;
+canvas.width = window.innerWidth * 0.9;
 canvas.height = 700;
 
 //global settings
-
 ctx.lineWidth = 10;
-ctx.strokeStyle = 'red';
 ctx.lineCap = 'round';
 
 class Line {
-  constructor(canvas, context) {
+  constructor(canvas) {
     this.canvas = canvas;
-    this.context = context;
     this.startX = Math.floor(Math.random() * this.canvas.width);
     this.startY = Math.floor(Math.random() * this.canvas.height);
     this.endX = Math.floor(Math.random() * this.canvas.width);
@@ -31,10 +29,9 @@ class Line {
 }
 
 const linesArray = [];
-for (let i = 0; i <= 10; i++) {
+const numberOfLines = 50;
+for (let i = 0; i < numberOfLines; i++) {
   linesArray.push(new Line(canvas));
-  for (let h = 0; h <= linesArray.length; h++) {
-    linesArray[h].draw(ctx);
-  }
 }
 console.log(linesArray);
+linesArray.forEach((line) => line.draw(ctx));
